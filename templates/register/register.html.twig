@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% set user = true %}
+    {% set gender = ["Homme", "Femme"] %}
+    <section id="banner" class="major">
+        <div class="inner">
+            <header class="major">
+                <form id="register" action="post">
+                    <div class="field half">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+
+
+                    {# <div class="field half">
+                        <label for="gender">Gender</label>
+
+                        <select id="gender">
+                            <option value="">--Please choose an option--</option>
+                            {% for a in gender %}
+                            <option value={{ a }}>{{ a }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div> #}
+
+
+                    <div class="field half">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+
+                    <div class="field half">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <span id="message"></span>
+                    <div class="content">
+                        <button type="submit" class="button next scrolly">Register</button>
+                    </div>
+                </form>
+            </header>
+
+            
+        </div>
+    </section>
+{% endblock %}
+{%block script %}
+<script>
+    $(function () {
+        $("#register").submit((e) => {
+            e.preventDefault(); // cancelling the native event of tag
+            let dataUser = $("#register").serialize(); // convert data into string
+            $.post("{{ path('register_post')}}", dataUser, (data) => {
+                $("#message").text(data[0]);
+                setTimeout(()=> {
+                    document.location.href = "{{ path('login_post')}}"; // redirect
+                }, 2000)
+            }).fail((error) => {
+                console.log(error);
+                $("#message").css("color","red");
+                $("#message").text(error.responseJSON[0]);
+            })
+        })
+    })
+</script>
+{% endblock %}
