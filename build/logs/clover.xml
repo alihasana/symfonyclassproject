@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1570197510">
-  <project timestamp="1570197510">
+<coverage generated="1570197705">
+  <project timestamp="1570197705">
     <package name="App\Controller">
       <file name="/home/shaik/develop/test/symfonyclassproject/src/Controller/DefaultController.php">
         <class name="App\Controller\DefaultController" namespace="App\Controller">
