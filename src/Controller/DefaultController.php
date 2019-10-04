@@ -1,10 +1,10 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller {
+class DefaultController extends AbstractController {
     public function home(Request $request){
         dump('Inside Home');
         $user = ["name" => $this->getUser()->getName(), "email" => $this->getUser()->getEmail(),  ];
@@ -24,7 +24,7 @@ class DefaultController extends Controller {
 
     // function shuffleArray($name, $array) {
     //     $newArray = [];
-    //     for ($i=0; $i < count($array); $i++) { 
+    //     for ($i=0; $i < count($array); $i++) {
     //         if($array[$i] !== $name )
     //             array_push($newArray, $array[$i]);
     //     }
