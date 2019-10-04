@@ -68,14 +68,6 @@ $coverage->setData(array (
     array (
     ),
   ),
-  '/home/shaik/develop/test/symfonyclassproject/src/Util/Calculator.php' => 
-  array (
-    9 => 
-    array (
-      0 => 'App\\Tests\\Util\\CalculatorTest::testAdd',
-    ),
-    10 => NULL,
-  ),
   '/home/shaik/develop/test/symfonyclassproject/src/Controller/DefaultController.php' => 
   array (
     9 => 
@@ -769,14 +761,21 @@ $coverage->setData(array (
     array (
     ),
   ),
+  '/home/shaik/develop/test/symfonyclassproject/src/Util/Calculator.php' => 
+  array (
+    8 => 
+    array (
+    ),
+    9 => 
+    array (
+    ),
+    10 => 
+    array (
+    ),
+  ),
 ));
 $coverage->setTests(array (
   'App\\Tests\\Controller\\pageTest::testRun' => 
-  array (
-    'size' => 'unknown',
-    'status' => 0,
-  ),
-  'App\\Tests\\Util\\CalculatorTest::testAdd' => 
   array (
     'size' => 'unknown',
     'status' => 0,
