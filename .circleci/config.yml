@@ -8,6 +8,20 @@ jobs:
     executor: php-symfony
     steps:
       - checkout
+    # Install php extensions
+      - run: &php_extensions
+          name: Install PHP extensions
+          command: sudo docker-php-ext-install pdo
+    # Download and cache dependencies
+      - restore_cache: &composer_restore_cache
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - composer-cache-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - composer-cache-
+      - run: &composer_install_scripts
+          name: Composer Install & Symfony Scripts
+          command: php -d memory_limit=-1 $(which composer) install -n --prefer-dist
 workflows:
   version: 2
   build:
