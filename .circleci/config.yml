@@ -3,6 +3,8 @@ executors:
   php-symfony:
     docker:
       - image: circleci/php:7.2
+        environment:
+          TZ: "Europe/Paris"
 jobs:
   php build:
     executor: php-symfony
@@ -26,7 +28,7 @@ jobs:
           name: Run Unit tests
           command: php vendor/bin/simple-phpunit
       - run:
-          name: Create coveralls JSON file
+          name: Run coveralls
           command: php vendor/bin/php-coveralls -v
 workflows:
   version: 2
