@@ -22,7 +22,7 @@ jobs:
             - composer-cache-
       - run: &composer_install_scripts
           name: Composer Install & Symfony Scripts
-          command: php -d memory_limit=-1 $(which composer) install -n --prefer-dist
+          command: php -d memory_limit=-1 composer install -n --prefer-dist
       - run:
           name: Display PHP information
           command: |
