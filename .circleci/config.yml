@@ -6,7 +6,7 @@ executors:
     environment:
       TZ: "Europe/Paris"
 jobs:
-  php build:
+  code check:
     executor: php-symfony
     steps:
       - checkout
@@ -34,4 +34,4 @@ workflows:
   version: 2
   build:
     jobs:
-      - php build
+      - code check
