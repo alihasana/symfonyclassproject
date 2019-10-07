@@ -17,3 +17,7 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+
+### coveralls api
+/.coveralls.yml
+/build/logs

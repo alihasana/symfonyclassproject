@@ -7,7 +7,6 @@ executors:
       TZ: "Europe/Paris"
 jobs:
   php build:
-    parallelism: 4
     executor: php-symfony
     steps:
       - checkout
