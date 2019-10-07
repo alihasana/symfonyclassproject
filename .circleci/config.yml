@@ -22,6 +22,12 @@ jobs:
       - run: &composer_install_scripts
           name: Composer Install & Symfony Scripts
           command: php -d memory_limit=-1 $(which composer) install -n --prefer-dist
+      - run:
+          name: Run CS tests
+          command: vendor/bin/phpcs
+      - run:
+          name: Run Unit tests
+          command: vendor/bin/phpunit
 workflows:
   version: 2
   build:
