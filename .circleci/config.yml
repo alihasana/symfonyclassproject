@@ -25,6 +25,9 @@ jobs:
       - run:
           name: Run Unit tests
           command: php vendor/bin/simple-phpunit
+      - run:
+          name: Create coveralls JSON file
+          command: php vendor/bin/php-coveralls -v
 workflows:
   version: 2
   build:
