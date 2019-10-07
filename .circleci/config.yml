@@ -1,48 +1,7 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: php:7.1-apache
-        environment:
-          APP_ENV: test
-    steps:
-      - run:
-          name: Install system packages
-          command: apt-get update && apt-get -y install git
-      - run:
-          name: Install PHP extensions
-          command: docker-php-ext-install pdo
-        # Download and cache dependencies
-      - checkout # special step to check out source code to working directory
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-      - run: sudo docker-php-ext-install zip
-      - run: sudo composer self-update
-      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-          keys:
-            - composer-v1-{{ checksum "composer.lock" }}
-            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
-            - composer-v1-
-      - run: composer install -n --prefer-dist
-      - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
-          key: composer-v1-{{ checksum "composer.lock" }}
-          paths:
-            - vendor
-      - run:
-          name: Display PHP information
-          command: |
-            php -v
-            php composer.phar --version
-      - run:
-          name: Install project dependencies
-          command: php composer.phar install
-      - run:
-          name: Run CS tests
-          command: vendor/bin/phpcs
-      - run:
-          name: Run Unit tests
-          command: vendor/bin/simple-phpunit tests/
-      - run:
-          name: coveralls report generation
-          command: vendor/bin/php-coveralls -v
-
-
+version: 2.1
+orbs:
+  hello: circleci/hello-build@0.0.5
+workflows:
+  "Hello Workflow":
+    jobs:
+      - hello/hello-build
