@@ -3,8 +3,9 @@ executors:
   php-symfony:
     docker:
       - image: circleci/php:7.2
-        environment:
-          TZ: "Europe/Paris"
+    parallelism: 3
+    environment:
+      TZ: "Europe/Paris"
 jobs:
   php build:
     executor: php-symfony
