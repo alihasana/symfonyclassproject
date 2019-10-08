@@ -32,7 +32,7 @@ sentry:
         tags:
             tag1: 'value1'
             tag2: 'value2'
-        listener_priorities:
-            request: 1
-            subrequest: 1
-            console: 1
+    listener_priorities:
+        request: 1
+        sub_request: 1
+        console: 1
