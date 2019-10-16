@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1570457568">
-  <project timestamp="1570457568">
+<coverage generated="1571216070">
+  <project timestamp="1571216070">
     <package name="App\Util">
       <file name="/home/shaik/develop/test/symfonyclassproject/src/Util/Calculator.php">
         <class name="App\Util\Calculator" namespace="App\Util">
