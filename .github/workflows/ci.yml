@@ -32,9 +32,9 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Load Fixture
         run: |
-          - php bin/console doctrine:database:drop --force --env=test
-          - php bin/console doctrine:database:create --env=test
-          - php bin/console doctrine:schema:create --env=test
-          - php bin/console doctrine:fixtures:load --append --no-interaction --env=test
+          php bin/console doctrine:database:drop --force --env=test
+          php bin/console doctrine:database:create --env=test
+          php bin/console doctrine:schema:create --env=test
+          php bin/console doctrine:fixtures:load --append --no-interaction --env=test
       - name: PHP UNIT
         run: ./vendor/bin/simple-phpunit;
