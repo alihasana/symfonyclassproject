@@ -40,6 +40,7 @@ class UserFixtures extends Fixture
     ): void {
         $user = new User($email, $email, $password);
         $user->setRoles([$role]);
+        $user->setCreatedAt(new \DateTime());
         $manager->persist($user);
         $manager->flush();
     }
