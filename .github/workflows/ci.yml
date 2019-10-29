@@ -35,12 +35,12 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Clear Database
-          run: php bin/console doctrine:database:drop --force --env=test
+        run: php bin/console doctrine:database:drop --force --env=test
       - name: Create Database
-          run: php bin/console doctrine:database:create --env=test
+        run: php bin/console doctrine:database:create --env=test
       - name: Create Schema
-          run: php bin/console doctrine:schema:create --env=test
+        run: php bin/console doctrine:schema:create --env=test
       - name: Load Fixture
-          run: php bin/console doctrine:fixtures:load --append --no-interaction --env=test
+        run: php bin/console doctrine:fixtures:load --append --no-interaction --env=test
       - name: PHP UNIT
         run: ./vendor/bin/simple-phpunit;
