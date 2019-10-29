@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use DateTimeInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -32,7 +32,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="array")
      */
-    private $role = [];
+    private $roles = [];
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -43,14 +43,6 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $modifiedAt;
-
-    public function __construct($name, $email, $password) {
-        $this->setName($name);
-        $this->setEmail($email);
-        $this->setPassword($password);
-        $this->setRoles();
-        $this->events = new ArrayCollection();
-    }
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -93,34 +85,38 @@ class User implements UserInterface
 
     public function getRoles(): ?array
     {
-        return $this->role;
+        return $this->roles;
     }
 
-    public function setRoles(array $role = ["ROLE_USER"]): self
+    /**
+     * @param array<string> $roles
+     * @return $this
+     */
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getModifiedAt(): ?\DateTimeInterface
+    public function getModifiedAt(): ?DateTimeInterface
     {
         return $this->modifiedAt;
     }
 
-    public function setModifiedAt(\DateTimeInterface $modifiedAt): self
+    public function setModifiedAt(DateTimeInterface $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
 
@@ -143,10 +139,10 @@ class User implements UserInterface
         return $this->getEmail();
     }
     public function getSalt() {
-        
+
     }
     public function eraseCredentials () {
-        
+
     }
 
     /**
@@ -157,38 +153,8 @@ class User implements UserInterface
         return $this->events;
     }
 
-    public function addEvent(Event $event): self
+    public function __construct()
     {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
-            $event->setCreator($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvent(Event $event): self
-    {
-        if ($this->events->contains($event)) {
-            $this->events->removeElement($event);
-            // set the owning side to null (unless already changed)
-            if ($event->getCreator() === $this) {
-                $event->setCreator(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getRole(): ?array
-    {
-        return $this->role;
-    }
-
-    public function setRole(array $role): self
-    {
-        $this->role = $role;
-
-        return $this;
+        $this->roles[] = 'ROLE_USER';
     }
 }

@@ -38,9 +38,10 @@ class UserFixtures extends Fixture
         string $role,
         ObjectManager $manager
     ): void {
-        $user = new User($email, $email, $password);
+        $user = new User();
+        $user->setEmail($email);
+        $user->setPassword($password);
         $user->setRoles([$role]);
-        $user->setCreatedAt(new \DateTime());
         $manager->persist($user);
         $manager->flush();
     }
