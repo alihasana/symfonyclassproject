@@ -22,10 +22,6 @@ jobs:
         run: php bin/console lint:twig templates/;
       - name: YAML
         run: php bin/console lint:yaml config/;
-      - name: PHP Code Sniffer
-        run: ./vendor/bin/phpcs;
-      - name: PHP Stan
-        run: ./vendor/bin/phpstan analyse --no-progress;
 
   test:
     runs-on: ubuntu-latest
